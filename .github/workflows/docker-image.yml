@@ -22,7 +22,7 @@ jobs:
         - name: Build the tagged Docker image
           run: docker build . --file Dockerfile --tag testing_github_actions
         - name: Push the tagged Docker image
-          run: docker push testing_github_actions/testing_github_actions
+          run: docker push testing_github_actions
         - name: Build the latest Docker image
           run: docker build . --file Dockerfile --tag testing_github_actions
         - name: Push the latest Docker image
