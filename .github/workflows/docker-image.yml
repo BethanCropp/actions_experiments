@@ -20,10 +20,10 @@ jobs:
           #id: vars
           #run: echo ::set-output name=tag::$(echo ${GITHUB_REF:10})
         - name: Build the tagged Docker image
-          run: docker build . --file Dockerfile --tag testing_github_actions
+          run: docker build . --file Dockerfile --tag bethancropp/testing_github_actions
         - name: Push the tagged Docker image
-          run: docker push testing_github_actions
+          run: docker push bethancropp/testing_github_actions
         - name: Build the latest Docker image
-          run: docker build . --file Dockerfile --tag testing_github_actions
+          run: docker build . --file Dockerfile --tag bethancropp/testing_github_actions
         - name: Push the latest Docker image
-          run: docker push testing_github_actions
+          run: docker push bethancropp/testing_github_actions
