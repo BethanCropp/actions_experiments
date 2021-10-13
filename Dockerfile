@@ -1,19 +1,13 @@
-# ./Dockerfile
+FROM python:3.7
 
-FROM node:12-alpine as node-angular-cli
+RUN pip install fastapi uvicorn spacy
 
-LABEL authors="Preston Lamb"
+COPY ./app /app/app
 
-# Linux setup
-# I got this from another, deprecated Angular CLI image.
-# I trust that developer, so I continued to use this, but you
-# can leave it out if you want.
-RUN apk update \
-  && apk add --update alpine-sdk \
-  && apk del alpine-sdk \
-  && rm -rf /tmp/* /var/cache/apk/* *.tar.gz ~/.npm \
-  && npm cache verify \
-  && sed -i -e "s/bin\/ash/bin\/sh/" /etc/passwd
+ENV PYTHONPATH=/app
+WORKDIR /app
 
-# Angular CLI
-RUN npm install -g @angular/cli@8
+EXPOSE 8000
+
+ENTRYPOINT ["uvicorn"]
+CMD ["app.main:app", "--host", "0.0.0.0"]
