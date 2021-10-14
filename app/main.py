@@ -12,4 +12,4 @@ students ={
 
 @app.get("/")
 async def root():
-    return {"name": "First Data"}
+    return {"name": "Me"}
