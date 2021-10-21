@@ -1,22 +1,15 @@
-from fastapi import Depends, FastAPI, HTTPException
-from fastapi.security import HTTPBasic, HTTPBasicCredentials
-from starlette.status import HTTP_401_UNAUTHORIZED
+from typing import Optional
+
+from fastapi import FastAPI
 
 app = FastAPI()
 
-security = HTTPBasic()
+
+@app.get("/")
+def read_root():
+    return {"Hello": "World"}
 
 
-def get_current_username(credentials: HTTPBasicCredentials = Depends(security)):
-    if credentials.username != "foo" or credentials.password != "password":
-        raise HTTPException(
-            status_code=HTTP_401_UNAUTHORIZED,
-            detail="Incorrect email or password",
-            headers={"WWW-Authenticate": "Basic"},
-        )
-    return credentials.username
-
-
-@app.get("/users/me")
-def read_current_user(username: str = Depends(get_current_username)):
-    return {"username": username}
+@app.get("/items/{item_id}")
+def read_item(item_id: int, q: Optional[str] = None):
+    return {"item_id": item_id, "q": q}
