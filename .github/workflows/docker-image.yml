@@ -21,4 +21,4 @@ jobs:
         - name: Push the tagged Docker image
           run: docker push bethancropp/testing_github_actions
         - name: Run the build process with Docker
-          run: docker run push bethancropp/testing_github_actions
+          run: docker run bethancropp/testing_github_actions
