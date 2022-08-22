@@ -23,7 +23,7 @@ jobs:
           run: docker build . --file Dockerfile --tag bethancropp/testing_github_actions
         - name: Push the tagged Docker image
           run: docker push bethancropp/testing_github_actions
-        - name: Build the latest Docker image
-          run: docker build . --file Dockerfile --tag bethancropp/testing_github_actions
-        - name: Push the latest Docker image
-          run: docker push bethancropp/testing_github_actions
+        #- name: Build the latest Docker image
+        #  run: docker build . --file Dockerfile --tag bethancropp/testing_github_actions
+        #- name: Push the latest Docker image
+        #  run: docker push bethancropp/testing_github_actions
