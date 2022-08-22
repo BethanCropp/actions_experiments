@@ -27,3 +27,19 @@ jobs:
         #  run: docker build . --file Dockerfile --tag bethancropp/testing_github_actions
         #- name: Push the latest Docker image
         #  run: docker push bethancropp/testing_github_actions
+          
+    compile:
+        name: Compile site assets
+        runs-on: ubuntu-latest
+        steps:
+          - name: Check out the repo
+            uses: actions/checkout@v2
+          - name: Run the build process with Docker
+            uses: addnab/docker-run-action@v3
+            with:
+                image: bethancropp/testing_github_actions
+                options: -v ${{ github.workspace }}:/var/www
+                run: |
+                    composer install
+                    npm install
+                    npm run production
