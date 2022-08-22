@@ -27,7 +27,7 @@ jobs:
         - uses: actions/checkout@v2
         - name: Run the build process with Docker
         - uses: addnab/docker-run-action@v3
-          with:
+        - with:
                 image: bethancropp/testing_github_actions
                 options: -v ${{ github.workspace }}:/var/www
                 run: |
